@@ -2,6 +2,7 @@
 $tool_user_name = 'convert';
 
 include_once ( 'shared/common.php' ) ;
+error_reporting( E_ALL & ~E_NOTICE ); # Don't clutter the directory with unhelpful stuff
 
 $host = getProtocol() . "://tools.wmflabs.org/$tool_user_name/";
 
