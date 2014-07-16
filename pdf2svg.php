@@ -3,7 +3,7 @@ $tool_user_name = 'convert';
 
 include_once ( 'shared/common.php' ) ;
 
-$host = getProtocol() . '://tools.wmflabs.org/convert/';
+$host = getProtocol() . "://tools.wmflabs.org/$tool_user_name/";
 
 if (!array_key_exists('file', $_FILES)) {
   header("Location: $host");
