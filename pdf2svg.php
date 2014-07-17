@@ -4,10 +4,10 @@ $tool_user_name = 'convert';
 include_once ( 'shared/common.php' ) ;
 error_reporting( E_ALL & ~E_NOTICE ); # Don't clutter the directory with unhelpful stuff
 
-$host = getProtocol() . "://tools.wmflabs.org/$tool_user_name/";
+$url = getProtocol() . "://tools.wmflabs.org/$tool_user_name/";
 
 if ( !array_key_exists( 'file', $_FILES ) ) {
-  header( "Location: $host" );
+  header( "Location: $url" );
   die();
 }
 $uploadName = $_FILES['file']['tmp_name'];
@@ -16,14 +16,14 @@ $targetName = $fileName . '.svg';
 
 if ( $_FILES['file']['size'] > 1000000 ) {
   unlink( $uploadName );
-  header( "Location: $host#tooBig" );
+  header( "Location: $url#tooBig" );
   die();
 }
 
 if ( !move_uploaded_file( $uploadName, $fileName ) ) {
-  echo( 'cant move uploaded file' );
   unlink( $uploadName );
-  header( "Location: $host#cantmove" );
+  header( "Location: $url#cantmove" );
+  echo( 'cant move uploaded file' );
   die();
 }
 
@@ -33,16 +33,16 @@ unlink( $fileName );
 $handle = fopen( $targetName, 'r' );
 
 if ( $handle === false ) {
+  header( "Location: $url#conversionError" );
   echo( 'error converting the file' );
-  header( "Location: $host#conversionError" );
   die();
 }
 
 if ( filesize( $targetName ) > 5000000 ) {
   fclose( $handle );
   unlink( $targetName );
+  header( "Location: $url#outputTooHuge" );
   echo( 'output unexpectedly huge' );
-  header( "Location: $host#outputTooHuge" );
   die();
 }
 
@@ -51,8 +51,8 @@ fclose( $handle );
 unlink( $targetName );
 
 if ( strlen( $content ) > 5000000 ) {
+  header( "Location: $url#outputTooHuge2" );
   echo( 'output unexpectedly huge 2' );
-  header( "Location: $host#outputTooHuge2" );
   die();
 }
 
