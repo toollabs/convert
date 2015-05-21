@@ -11,7 +11,15 @@
 <form action="pdf2svg.php" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
 <input type="file" name="file" id="file" accept="application/pdf" />
-<input type="submit" name="submit" value="Convert now" />
+<input type="submit" name="submit" value="Convert to SVG" />
+</form>
+
+<h1>Convert SVG to PNG</h1>
+<form action="svg2png.php" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+<input type="file" name="file" id="file" accept="image/svg+xml" />
+<input type="submit" name="submit" value="Convert to PNG" />
+</form>
 
     <div style="height:100px;" class="od-spacer"></div>
     <div style="color:white">
