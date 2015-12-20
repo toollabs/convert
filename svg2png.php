@@ -34,7 +34,8 @@ if ( isset( $origin ) ) {
 	// Do we serve content to this origin?
 	if ( matchOrigin( $origin ) ) {
 		header( 'Access-Control-Allow-Origin: ' . $origin );
-		header( 'Access-Control-Allow-Methods: GET' );
+		header( 'Access-Control-Allow-Methods: HEAD, GET, POST, OPTIONS' );
+		header( 'Access-Control-Expose-Headers: X-Generator, Content-Length, Expires' );
 	} else {
 		header( 'HTTP/1.0 403 Forbidden' );
 		echo '{"error":"Accessing this tool from the origin you are attempting to connect from is not allowed."}';
@@ -114,4 +115,3 @@ fclose( $handle );
 unlink( $targetName );
 
 die();
-
