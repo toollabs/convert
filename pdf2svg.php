@@ -14,7 +14,7 @@ $uploadName = $_FILES['file']['tmp_name'];
 $fileName = $uploadName . '.pdf';
 $targetName = $fileName . '.svg';
 
-if ( $_FILES['file']['size'] > 1000000 ) {
+if ( $_FILES['file']['size'] > 5*0x100000 ) {
   unlink( $uploadName );
   header( "Location: $url#tooBig" );
   die();
@@ -38,7 +38,7 @@ if ( $handle === false ) {
   die();
 }
 
-if ( filesize( $targetName ) > 5000000 ) {
+if ( filesize( $targetName ) > 10*0x100000 ) {
   fclose( $handle );
   unlink( $targetName );
   header( "Location: $url#outputTooHuge" );
@@ -50,7 +50,7 @@ $content = file_get_contents( $targetName );
 fclose( $handle );
 unlink( $targetName );
 
-if ( strlen( $content ) > 5000000 ) {
+if ( strlen( $content ) > 10*0x100000 ) {
   header( "Location: $url#outputTooHuge2" );
   echo( 'output unexpectedly huge 2' );
   die();
