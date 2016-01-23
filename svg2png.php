@@ -67,7 +67,7 @@ $uploadName = $_FILES['file']['tmp_name'];
 $fileName = $uploadName . '.svg';
 $targetName = $fileName . '.png';
 
-if ( $_FILES['file']['size'] > 1000000 ) {
+if ( $_FILES['file']['size'] > 5*0x100000 ) {
 	unlink( $uploadName );
 	header( "Location: $url#tooBig" );
 	die();
@@ -94,7 +94,7 @@ if ( $handle === false ) {
 }
 
 $filesize = filesize( $targetName );
-if ( $filesize > 9000000 ) {
+if ( $filesize > 10*0x100000 ) {
 	fclose( $handle );
 	unlink( $targetName );
 	header( "Location: $url#outputTooHuge" );
