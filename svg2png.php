@@ -65,6 +65,11 @@ if ( ! array_key_exists( 'file', $_FILES ) ) {
 }
 $uploadName = $_FILES['file']['tmp_name'];
 $fileName = $uploadName . '.svg';
+$antiAliasingDisabled = isset( $_POST['no-antialiasing'] );
+$antiAliasingString = '';
+if ( $antiAliasingDisabled ) {
+	$antiAliasingString = '.no-antialiasing';
+}
 $targetName = $fileName . '.png';
 
 if ( $_FILES['file']['size'] > 5*0x100000 ) {
@@ -78,6 +83,21 @@ if ( ! move_uploaded_file( $uploadName, $fileName ) ) {
 	header( "Location: $url#cantmove" );
 	echo ( 'cant move uploaded file' );
 	die();
+}
+
+function crispEdges( DOMNodeList $domNodes ) {
+	if ( ! $domNodes instanceof DOMNodeList ) return;
+	foreach ( $domNodes as $node ) {
+		$node->setAttribute( 'shape-rendering', 'crispEdges' );
+	}
+};
+
+if ( $antiAliasingDisabled ) {
+	$dom = new DOMDocument();
+	$dom->load( $fileName );
+	$xpath = new DOMXpath( $dom );
+	crispEdges( $xpath->query( '//*[@style]' ) );
+	$dom->save( $fileName );
 }
 
 exec( 
@@ -106,7 +126,8 @@ header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
 header( 'Content-type: image/png' );
 header( 
 	'Content-Disposition: attachment; filename="' .
-		 addslashes( $_FILES['file']['name'] ) . '.png"' );
+		addslashes( $_FILES['file']['name'] ) .
+		$antiAliasingString . '.png"' );
 header( 'Expires: 0' );
 header( 'Content-Length: ' . $filesize );
 
