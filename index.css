@@ -1,0 +1,14 @@
+.row form {
+  width: 90%;
+  margin: auto;
+}
+.row input {
+  width: 75%;
+}
+.row input[type="submit"] {
+  width: 23%;
+  padding: 5px 2px;
+}
+.row input[type="checkbox"] {
+  width: auto;
+}
