@@ -1,34 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-<title>PDF2SVG</title>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert PDF to SVG , convert SVG to PNG format.">
+  <link rel="stylesheet" href="./index.css">
+  <title>Converter | PDF To SVG | SVG to PNG</title>
 </head>
 
 <body style="font-family:Arial,Helvetica,sans-serif;">
-<h1>Convert PDF to SVG</h1>
-<form action="pdf2svg.php" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-<input type="file" name="file" id="file" accept="application/pdf" />
-<input type="submit" name="submit" value="Convert to SVG" />
-</form>
-
-<h1>Convert SVG to PNG</h1>
-<form action="svg2png.php" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-<input type="file" name="file" id="file" accept="image/svg+xml" />
-<input type="submit" name="submit" value="Convert to PNG" />
-<br />
-<input type="checkbox" name="no-antialiasing" value="1" id="no-antialiasing" /><label for="no-antialiasing"> disable <a href="//wikipedia.org/wiki/anti-aliasing">anti-aliasing</a> (experimental)</label>
-</form>
-
-    <div style="height:100px;" class="od-spacer"></div>
-    <div style="color:white">
-      <div style="width:18%; border-bottom: 2px solid #396; float: left;"> </div>
-      <div style="width:18%; border-bottom: 2px solid #A7D7F9; float: left;"> </div>
-      <div style="width:18%; border-bottom: 2px solid #666; float: left;"> </div>
+  <div class="header">
+    <h2>Converter <span title="Convert PDF to SVG Format, convert SVG to PNG">!</span></h2>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="card">
+        <h2>Convert PDF to SVG</h2>
+        <form action="pdf2svg.php" method="POST" enctype="multipart/form-data" class=" ">
+          <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+          <input type="file" name="file" id="file" accept="application/pdf" />
+          <input type="submit" name="submit" value="Convert" title="convert to SVG"
+            class="btn btn-primary text-white" />
+        </form>
+      </div>
     </div>
-    <div style="clear:left; margin-top: 0.3em">This tool is maintained by <a href="//commons.wikimedia.org/wiki/User:Rillke">Rillke</a> and others. Issues and pull requests?  <a href="https://github.com/Rillke/convert">On GitHub</a>.</div>
+
+    <div class="row">
+      <div class="card">
+        <h2>Convert SVG to PNG</h2>
+        <form action="svg2png.php" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+          <input type="file" name="file" id="file" accept="image/svg+xml" />
+          <input type="submit" name="submit" value="Convert" title="convert to PNG"
+            class="btn btn-primary text-white" />
+          <div class="disable-handler">
+            <input type="checkbox" name="no-antialiasing" value="1" id="no-antialiasing" /><label for="no-antialiasing">
+              disable <a href="//wikipedia.org/wiki/anti-aliasing">anti-aliasing</a> (experimental)</label>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <div style="height:100px;" class="od-spacer"></div>
+      <div style="color:white">
+        <div style="width:33%; border-bottom: 2px solid #396; float: left;"> </div>
+        <div style="width:33%; border-bottom: 2px solid #A7D7F9; float: left;"> </div>
+        <div style="width:33%; border-bottom: 2px solid #666; float: left;"> </div>
+      </div>
+      <div style="clear:left; margin-top: 0.3em">This tool is maintained by <a
+          href="//commons.wikimedia.org/wiki/User:Rillke" class="text-primary">Rillke</a> and others. Issues and pull
+        requests? <a href="https://github.com/Rillke/convert" class="text-info">On GitHub</a>.</div>
+    </footer>
+  </div>
 </body>
+
 </html>

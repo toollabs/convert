@@ -1,4 +1,4 @@
 convert
 =======
 
-Tool labs. Light conversions like PDF → SVG.
+Tool labs. Light conversions like PDF → SVG and SVG → PNG.
